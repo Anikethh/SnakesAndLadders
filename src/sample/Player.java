@@ -6,7 +6,7 @@ public class Player {
 
     private int position;
     private int[] coordinates;
-    private Color color;
+    private final Color color;
     private final String name;
 
     Player(String name, Color color){
@@ -24,10 +24,6 @@ public class Player {
 
     public Color getColor() {
         return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public String getName() {

@@ -25,7 +25,7 @@ public class Game {
     private Player Player1;
     private Player Player2;
     private Board GameBoard;
-    private Die Die;
+    private Die Die = new Die();
 
     @FXML
     public Button exitButton;
@@ -42,7 +42,7 @@ public class Game {
 
     Random random = new Random();
     Stage stage;
-    private int turn = 0;
+    private boolean turn = true;
 
     public void exit(ActionEvent event) {
 
@@ -59,50 +59,12 @@ public class Game {
 
     }
 
-
-
     public void exitGame(ActionEvent actionEvent) {
     }
 
     @FXML
     int roll(ActionEvent event) {
-
-        boolean turnFlag = true;
-
-
-        if(turn%2 == 0){
-
-        }
-        else{
-
-        }
-
-        rollButton.setDisable(true);
-        final int[] numberRolled = new int[1];
-
-
-        Thread thread = new Thread(){
-            public void run(){
-
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        numberRolled[0] = random.nextInt(6)+1;
-                        File file = new File("src/sample/Images/dice/dice-0" + numberRolled[0] +".png");
-                        diceImage.setImage(new Image(file.toURI().toString()));
-                        Thread.sleep(50);
-                    }
-                    System.out.println(numberRolled[0]);
-                    rollButton.setDisable(false);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-        System.out.println(numberRolled[0]);
-        return numberRolled[0];
+        return Die.roll(event, rollButton, diceImage);
     }
 
     public ImageView cover;
@@ -136,12 +98,17 @@ public class Game {
     }
 
     //playerName inputs
-    public void playerNames(ActionEvent event) throws IOException {
+    public void initializePlayers(ActionEvent event) throws IOException {
         String name1 = player1.getText();
         String name2 = player2.getText();
 
+        Player1 = new Player(name1, Color.BLUE);
+        Player2 = new Player(name2, Color.GREEN);
+
+        Player1.setPosition(0);
+        Player2.setPosition(0);
+
         System.out.println(name1);
         System.out.println(name2);
-
     }
 }

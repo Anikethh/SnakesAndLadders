@@ -18,7 +18,7 @@ public class Die {
     @FXML
     private Button rollButton;
     @FXML
-    int roll(ActionEvent event) {
+    int roll(ActionEvent event, Button rollButton, ImageView diceImage) {
 
         rollButton.setDisable(true);
 
@@ -32,7 +32,7 @@ public class Die {
                         File file = new File("src/sample/Images/dice/dice-0" + numberRolled +".png");
                         diceImage.setImage(new Image(file.toURI().toString()));
                         sleep(50);
-//                        Thread.sleep(50);
+                        Thread.sleep(50);
                     }
                     rollButton.setDisable(false);
                 } catch (InterruptedException e) {
