@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 public class Player {
 
     @FXML
-    private ImageView pawn;
+    private final ImageView pawn;
 
     private int position;
     private int[] coordinates;

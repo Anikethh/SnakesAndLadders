@@ -39,7 +39,7 @@ public class Game {
     public Button exitButton;
     public AnchorPane background;
     public ImageView imageview;
-    public Button rollButton1;
+    public Button Jump;
     public TextField player1;
     public TextField player2;
 
@@ -76,9 +76,20 @@ public class Game {
 
     @FXML
     int roll(ActionEvent event) throws InterruptedException {
-        int n = Die.roll(event, rollButton, diceImage);
+
+        boolean turn = true;
+        if(turn) {
+            int n = Die.roll(event, rollButton, diceImage);
+            int count = 5;
+            jump(count);
+        }
+        else{
+            int n = Die.roll(event, rollButton, diceImage);
+//            int count = 5;
+            jump(n);
+        }
 //        System.out.println(n);
-        return n;
+        return 0;
     }
 
     public ImageView cover;
@@ -126,19 +137,21 @@ public class Game {
         System.out.println(name2);
     }
 
-    public void jump(ActionEvent event) {
-        TranslateTransition translation = new TranslateTransition(Duration.millis(250), bluePawn);
-        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-        translation.setByY(-25);
-        translation.setAutoReverse(true);
-        translation.setCycleCount(2);
-//        translation.setByX(35);
-        translation.play();
-//        translation.setByX(35);
-        TranslateTransition xTransition = new TranslateTransition(Duration.millis(500), bluePawn);
-        xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-        xTransition.setByX(28);
-        xTransition.play();
+    public void jump(int count) {
+        if(count > 0) {
+            TranslateTransition translation = new TranslateTransition(Duration.millis(125), bluePawn);
+            translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+            translation.setByY(-20);
+            translation.setAutoReverse(true);
+            translation.setCycleCount(2);
+            translation.play();
+            TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), bluePawn);
+            xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+            xTransition.setByX(28);
+            xTransition.play();
+            count--;
+            jump(count);
+        }
     }
 }
 
