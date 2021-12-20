@@ -156,11 +156,7 @@ public class Game {
 //            count--;
 //            jump(count);
 //        }
-//            try {
-//                Thread.sleep();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+//
 //        });
 //        thread.start();
     }
