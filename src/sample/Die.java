@@ -18,13 +18,15 @@ public class Die {
     @FXML
     private Button rollButton;
     @FXML
-    int roll(ActionEvent event, Button rollButton, ImageView diceImage) {
+    int roll(ActionEvent event, Button rollButton, ImageView diceImage) throws InterruptedException {
 
         rollButton.setDisable(true);
 
         Thread thread = new Thread(){
+
+            private int numberRolled;
+
             public void run(){
-                int numberRolled;
                 System.out.println("Thread Running");
                 try {
                     for (int i = 0; i < 15; i++) {
@@ -32,16 +34,26 @@ public class Die {
                         File file = new File("src/sample/Images/dice/dice-0" + numberRolled +".png");
                         diceImage.setImage(new Image(file.toURI().toString()));
                         sleep(50);
-                        Thread.sleep(50);
                     }
+                    System.out.println(numberRolled);
                     rollButton.setDisable(false);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+
+            public void setNumberRolled(int numberRolled) {
+                this.numberRolled = numberRolled;
+            }
+
+            public int getRolledNumber() {
+                return numberRolled;
+            }
         };
 
         thread.start();
-        return 0;
+//        int n = thread.
+//        System.out.println(thread.getId());
+        return (int) thread.getId();
     }
 }

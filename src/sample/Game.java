@@ -39,6 +39,10 @@ public class Game {
     private ImageView diceImage;
     @FXML
     private Button rollButton;
+    @FXML
+    ImageView greenPawn;
+    @FXML
+    ImageView bluePawn;
 
     Random random = new Random();
     Stage stage;
@@ -63,8 +67,10 @@ public class Game {
     }
 
     @FXML
-    int roll(ActionEvent event) {
-        return Die.roll(event, rollButton, diceImage);
+    int roll(ActionEvent event) throws InterruptedException {
+        int n = Die.roll(event, rollButton, diceImage);
+//        System.out.println(n);
+        return n;
     }
 
     public ImageView cover;
@@ -102,8 +108,8 @@ public class Game {
         String name1 = player1.getText();
         String name2 = player2.getText();
 
-        Player1 = new Player(name1, Color.BLUE);
-        Player2 = new Player(name2, Color.GREEN);
+        Player1 = new Player(name1, Color.BLUE, bluePawn);
+        Player2 = new Player(name2, Color.GREEN, greenPawn);
 
         Player1.setPosition(0);
         Player2.setPosition(0);

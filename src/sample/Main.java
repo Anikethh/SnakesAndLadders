@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
+import java.util.Objects;
+
 
 public class Main extends Application {
 
@@ -16,7 +18,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("scene1.fxml")));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
