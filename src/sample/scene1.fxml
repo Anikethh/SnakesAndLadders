@@ -12,12 +12,15 @@
     <ImageView fx:id="cover" fitHeight="710.0" fitWidth="376.0" layoutX="-3.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/HomeScreen.png" />
     </ImageView>
-    <Button blendMode="MULTIPLY" layoutX="66.0" layoutY="308.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="44.0" prefWidth="206.0" />
+    <Button blendMode="MULTIPLY" layoutX="62.0" layoutY="312.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="44.0" prefWidth="206.0" />
    <Label layoutX="75.0" layoutY="607.0" prefHeight="18.0" prefWidth="185.0" text="Game by Anshul and Aniketh" textFill="WHITE">
       <font>
          <Font name="Arial Italic" size="14.0" />
       </font>
    </Label>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="18.0" layoutX="219.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="41.0" />
-   <Label layoutX="238.0" layoutY="336.0" text="2" textFill="WHITE" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="10.0" layoutX="174.0" layoutY="340.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="94.0" />
+   <Label layoutX="180.0" layoutY="338.0" prefHeight="15.0" prefWidth="80.0" text="Players:    2" textFill="WHITE">
+      <font>
+         <Font size="10.0" />
+      </font></Label>
 </AnchorPane>

@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class Die {
 
+    public int numberRolled;
+
     Random random = new Random();
 
     @FXML
@@ -22,38 +24,24 @@ public class Die {
 
         rollButton.setDisable(true);
 
-        Thread thread = new Thread(){
-
-            private int numberRolled;
-
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        numberRolled = random.nextInt(6)+1;
-                        File file = new File("src/sample/Images/dice/dice-0" + numberRolled +".png");
-                        diceImage.setImage(new Image(file.toURI().toString()));
-                        sleep(50);
-                    }
-                    System.out.println(numberRolled);
-                    rollButton.setDisable(false);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        Thread thread = new Thread(() -> {
+//            System.out.println("Thread Running");
+            try {
+                for (int i = 0; i < 15; i++) {
+                    numberRolled = random.nextInt(6)+1;
+                    File file = new File("src/sample/Images/dice/dice-0" + numberRolled +".png");
+                    diceImage.setImage(new Image(file.toURI().toString()));
+                    Thread.sleep(50);
                 }
+                rollButton.setDisable(false);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-            public void setNumberRolled(int numberRolled) {
-                this.numberRolled = numberRolled;
-            }
-
-            public int getRolledNumber() {
-                return numberRolled;
-            }
-        };
+        });
 
         thread.start();
-//        int n = thread.
-//        System.out.println(thread.getId());
-        return (int) thread.getId();
+//        Thread.sleep(15*50);
+//        System.out.println(numberRolled);
+        return numberRolled;
     }
 }

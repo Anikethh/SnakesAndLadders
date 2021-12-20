@@ -75,21 +75,23 @@ public class Game {
     }
 
     @FXML
-    int roll(ActionEvent event) throws InterruptedException {
+    void roll(ActionEvent event) throws InterruptedException {
 
-        boolean turn = true;
+        int n = Die.roll(event, rollButton, diceImage);
+        System.out.println(n);
         if(turn) {
-            int n = Die.roll(event, rollButton, diceImage);
-            int count = 5;
-            jump(count);
+            for(int i = 0; i < n; i++){
+                jump(n);
+            }
+//            jump(count);
+            turn = false;
         }
         else{
-            int n = Die.roll(event, rollButton, diceImage);
-//            int count = 5;
+            //            int count = 5;
             jump(n);
+            turn = true;
         }
 //        System.out.println(n);
-        return 0;
     }
 
     public ImageView cover;
@@ -138,7 +140,9 @@ public class Game {
     }
 
     public void jump(int count) {
-        if(count > 0) {
+
+//        Thread thread = new Thread(() -> {
+//        if(count > 0) {
             TranslateTransition translation = new TranslateTransition(Duration.millis(125), bluePawn);
             translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
             translation.setByY(-20);
@@ -149,21 +153,16 @@ public class Game {
             xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
             xTransition.setByX(28);
             xTransition.play();
-            count--;
-            jump(count);
-        }
+//            count--;
+//            jump(count);
+//        }
+//            try {
+//                Thread.sleep();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        thread.start();
     }
-}
 
-//class PawnController implements Initializable {
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        TranslateTransition translation = new TranslateTransition(Duration.millis(500), this);
-//        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-//        translation.setByY(-50);
-//        translation.setAutoReverse(true);
-//        translation.setCycleCount(2);
-//        translation.play();
-//    }
-//}
+}
