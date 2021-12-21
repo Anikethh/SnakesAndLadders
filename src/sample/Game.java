@@ -39,7 +39,6 @@ public class Game {
     public Button exitButton;
     public AnchorPane background;
     public ImageView imageview;
-    public Button Jump;
     public TextField player1;
     public TextField player2;
 
@@ -52,7 +51,6 @@ public class Game {
     @FXML
     ImageView bluePawn;
 
-    Random random = new Random();
     Stage stage;
     private boolean turn = true;
 
@@ -68,6 +66,8 @@ public class Game {
 
         Player1.setPosition(0);
         Player2.setPosition(0);
+//        Player1.setPosition(0);
+//        Player2.setPosition(0);
     }
 
     public void exit(ActionEvent event) {
@@ -96,19 +96,14 @@ public class Game {
 
         if(turn) {
             Player1.setPosition(Player1.getPosition()+steps);
-            Player1.jump(bluePawn, steps);
-//            for(int i = 0; i < n; i++){
-//                Player1.jump(bluePawn);
-//            }
-//            jump(count);
+            Player1.move(bluePawn, steps);
             turn = false;
         }
         else{
             Player2.setPosition(Player2.getPosition()+steps);
-            Player2.jump(greenPawn, steps);
+            Player2.move(greenPawn, steps);
             turn = true;
         }
-//        System.out.println(n);
     }
 
     public ImageView cover;

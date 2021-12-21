@@ -16,6 +16,7 @@ public class Player {
 
     private int position;
     private int[] coordinates;
+//    private int row = coordinates[1];
     private final Color color;
     private final String name;
 
@@ -26,9 +27,24 @@ public class Player {
         this.GameBoard = GameBoard;
     }
 
-//    int count = 5;
-    public void jump(ImageView pawn, int count) {
+    public void move(ImageView pawn, int count){
+//        if(position%10 == 0){
+            jumpRow(pawn);
+//        }
+//        else {
+            jump(pawn, count, coordinates[0] % 2 == 0);
+//        }
+    }
 
+    public void jump(ImageView pawn, int count, boolean sideRight) {
+
+        int xTranslation = 29;
+
+        if(!sideRight){
+            xTranslation *= -1;
+        }
+
+        int finalXTranslation = xTranslation;
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++){
                 TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
@@ -39,7 +55,7 @@ public class Player {
                 translation.play();
                 TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), pawn);
                 xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-                xTransition.setByX(29);
+                xTransition.setByX(finalXTranslation);
                 xTransition.play();
                 try {
                     Thread.sleep(250);
@@ -47,8 +63,16 @@ public class Player {
                     e.printStackTrace();
                 }
             }
+
         });
         thread.start();
+    }
+
+    public void jumpRow(ImageView pawn){
+        TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
+        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+        translation.setByY(-40.25);
+        translation.play();
     }
 
     public int getPosition() {
