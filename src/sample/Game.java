@@ -30,10 +30,8 @@ import java.util.ResourceBundle;
 
 public class Game {
 
-//    private final SimpleObjectProperty<Player> Player1 = new SimpleObjectProperty<>(this, "player1");
     private final Player Player1;
     private final Player Player2;
-//    private final SimpleObjectProperty<Player> Player2 = new SimpleObjectProperty<>(this, "player2");
     private final Board GameBoard = new Board();
     private final Die Die = new Die();
 
@@ -59,8 +57,14 @@ public class Game {
     private boolean turn = true;
 
     public Game() {
-        Player1 = (new Player("yr", Color.BLUE, bluePawn));
-        Player2 = (new Player("yr2", Color.GREEN, greenPawn));
+
+//        String name1 = player1.getText();
+//        String name2 = player2.getText();
+
+        GameBoard.populateBoard();
+
+        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard));
+        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard));
 
         Player1.setPosition(0);
         Player2.setPosition(0);
@@ -87,12 +91,12 @@ public class Game {
     @FXML
     void roll(ActionEvent event) throws InterruptedException, IOException {
 
-        int n = Die.roll(event, rollButton, diceImage);
-        System.out.println(n);
+        int steps = Die.roll(event, rollButton, diceImage);
+        System.out.println(steps);
 
         if(turn) {
-            Player1.setPosition(Player1.getPosition()+n);
-            Player1.jump(bluePawn);
+            Player1.setPosition(Player1.getPosition()+steps);
+            Player1.jump(bluePawn, steps);
 //            for(int i = 0; i < n; i++){
 //                Player1.jump(bluePawn);
 //            }
@@ -100,8 +104,8 @@ public class Game {
             turn = false;
         }
         else{
-            Player2.setPosition(Player2.getPosition()+n);
-            Player2.jump(greenPawn);
+            Player2.setPosition(Player2.getPosition()+steps);
+            Player2.jump(greenPawn, steps);
             turn = true;
         }
 //        System.out.println(n);
@@ -130,7 +134,6 @@ public class Game {
     }
 
     public void playerToGame(ActionEvent event) throws IOException {
-        initializePlayers();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -138,20 +141,6 @@ public class Game {
         stage.show();
     }
 
-    //playerName inputs
-    public void initializePlayers() throws IOException {
-//        String name1 = player1.getText();
-//        String name2 = player2.getText();
-
-//        Player1 = (new Player("yr", Color.BLUE, bluePawn));
-//        Player2 = (new Player("yr2", Color.GREEN, greenPawn));
-//
-//        Player1.setPosition(0);
-//        Player2.setPosition(0);
-
-//        System.out.println(name1);
-//        System.out.println(name2);
-    }
 
 
 

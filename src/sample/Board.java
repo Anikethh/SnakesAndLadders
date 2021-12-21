@@ -17,4 +17,12 @@ public class Board {
             }
         }
     }
+
+    public void setSnakes(){
+
+    }
+
+    public void setLadders(){
+
+    }
 }

@@ -11,37 +11,44 @@ public class Player {
 
     @FXML
     private final ImageView pawn;
+    private Cell playerCell;
+    private final Board GameBoard;
 
     private int position;
     private int[] coordinates;
     private final Color color;
     private final String name;
 
-    Player(String name, Color color, ImageView pawn){
+    Player(String name, Color color, ImageView pawn, Board GameBoard){
         this.name = name;
         this.color = color;
         this.pawn = pawn;
+        this.GameBoard = GameBoard;
     }
 
-    public void jump(ImageView pawn) {
+//    int count = 5;
+    public void jump(ImageView pawn, int count) {
 
-//        Thread thread = new Thread(() -> {
-//        if(count > 0) {
-        TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
-        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-        translation.setByY(-20);
-        translation.setAutoReverse(true);
-        translation.setCycleCount(2);
-        translation.play();
-        TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), pawn);
-        xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-        xTransition.setByX(28);
-        xTransition.play();
-//            count--;
-//            jump(count);
-//        }
-//        });
-//        thread.start();
+        Thread thread = new Thread(() -> {
+            for(int i = 0; i < count; i++){
+                TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
+                translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+                translation.setByY(-20);
+                translation.setAutoReverse(true);
+                translation.setCycleCount(2);
+                translation.play();
+                TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), pawn);
+                xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+                xTransition.setByX(29);
+                xTransition.play();
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
     public int getPosition() {
