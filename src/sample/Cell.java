@@ -8,6 +8,8 @@ public class Cell {
     private boolean hasLadderBottom;
     private final int[] coordinate;
     private final int position;
+    private Snake snake = new Snake();
+    private Ladder ladder = new Ladder();
 
     Cell(int position, int[] coordinate){
         this.position = position;
@@ -53,5 +55,13 @@ public class Cell {
 
     public int getPosition() {
         return position;
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

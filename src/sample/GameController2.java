@@ -12,5 +12,4 @@ public class GameController2 {
         name1.setText(playername1);
         name2.setText(playername2);
     }
-
 }

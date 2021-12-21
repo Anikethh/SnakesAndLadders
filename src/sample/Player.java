@@ -41,22 +41,17 @@ public class Player {
                 coordinates[1] = 1;
                 if(blueTurn){
                     blueTurn = false;
+//                    pawn.setTranslateX(-10);
+                    pawn.setTranslateY(-39);
                 }
 //                TranslateTransition putOnBoard = new TranslateTransition(Duration.millis(75), pawn);
 //                putOnBoard.setByX(0);
 //                putOnBoard.setByY(-40);
 //                putOnBoard.play();
-                pawn.setTranslateX(-10);
-                pawn.setTranslateY(-40);
             }
         }
         else {
-            if(position%10 == 0){
-                jumpRow(pawn);
-            }
-            else {
-                jump(pawn, count, coordinates[1] % 10 == 1);
-            }
+            jump(pawn, count);
         }
     }
 
@@ -64,18 +59,18 @@ public class Player {
         position += 1;
         coordinates[0] = position / 10 + 1;
         coordinates[1] = position % 10;
-        System.out.println(coordinates[1]);
+//        System.out.println(coordinates[1]);
     }
 
-    public void jump(ImageView pawn, int count, boolean sideRight) {
-//        int finalXTranslation = xTranslation;
+    public void jump(ImageView pawn, int count) {
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
-                double xTranslation = 28.5;
-//                sideRight = (coordinates[1] % 10) == 1;
+                double xTranslation = 29;
+
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
+
                 if(coordinates[1] != 0) {
                     TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
 //                    translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
@@ -87,6 +82,7 @@ public class Player {
                     xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
                     xTransition.setByX(xTranslation);
                     xTransition.play();
+                    System.out.println(i + "  " +  xTranslation + " " + count + " " + position);
                     try {
                         Thread.sleep(150);
                     } catch (InterruptedException e) {
@@ -94,21 +90,36 @@ public class Player {
                     }
                 }
                 else{
+                    Thread thread1 = new Thread(() -> {
                     jumpRow(pawn);
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    thread1.start();
                 }
                 incrementPosition();
             }
+//            Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
+//            if(currentCell.isHasLadderBottom()){
+//                int destinationX = currentCell.getLadder().getTop()[0];
+//            }
         });
         thread.start();
     }
 
     public void jumpRow(ImageView pawn){
-        Translate trans = new Translate();
-        trans.setX(trans.getX());
-        TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
-        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-        translation.setByY(-40.25);
-        translation.play();
+            TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
+            translation.setByY(-20);
+            translation.setAutoReverse(true);
+            translation.setCycleCount(2);
+            translation.play();
+            TranslateTransition translationY = new TranslateTransition(Duration.millis(150), pawn);
+            translationY.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+            translationY.setByY(-38);
+            translationY.play();
     }
 
     public int getPosition() {
