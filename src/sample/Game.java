@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 public class Game {
 
     private final SimpleObjectProperty<Player> Player1 = new SimpleObjectProperty<>(this, "player1");
+//    private final Player Player1 = new Player("player1", Color.BLUE, bluePawn);
     private final SimpleObjectProperty<Player> Player2 = new SimpleObjectProperty<>(this, "player2");
     private final Board GameBoard = new Board();
     private final Die Die = new Die();
@@ -79,16 +80,18 @@ public class Game {
 
         int n = Die.roll(event, rollButton, diceImage);
         System.out.println(n);
+
         if(turn) {
+            Player1.get().setPosition(Player1.get().getPosition()+n);
             for(int i = 0; i < n; i++){
-                jump(n);
+                Player1.get().jump(bluePawn);
             }
 //            jump(count);
             turn = false;
         }
         else{
-            //            int count = 5;
-            jump(n);
+            Player2.get().setPosition(Player2.get().getPosition()+n);
+            Player2.get().jump(greenPawn);
             turn = true;
         }
 //        System.out.println(n);
@@ -139,26 +142,6 @@ public class Game {
         System.out.println(name2);
     }
 
-    public void jump(int count) {
 
-//        Thread thread = new Thread(() -> {
-//        if(count > 0) {
-            TranslateTransition translation = new TranslateTransition(Duration.millis(125), bluePawn);
-            translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-            translation.setByY(-20);
-            translation.setAutoReverse(true);
-            translation.setCycleCount(2);
-            translation.play();
-            TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), bluePawn);
-            xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-            xTransition.setByX(28);
-            xTransition.play();
-//            count--;
-//            jump(count);
-//        }
-//
-//        });
-//        thread.start();
-    }
 
 }
