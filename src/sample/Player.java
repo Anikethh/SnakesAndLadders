@@ -21,6 +21,7 @@ public class Player {
 //    private int row = coordinates[1];
     private final Color color;
     private final String name;
+    private boolean blueTurn = true;
 
     Player(String name, Color color, ImageView pawn, Board GameBoard){
         this.name = name;
@@ -31,12 +32,22 @@ public class Player {
     }
 
     public void move(ImageView pawn, int count){
+
         if(!started){
             if(count == 1){
                 started = true;
                 position = 1;
                 coordinates[0] = 1;
                 coordinates[1] = 1;
+                if(blueTurn){
+                    blueTurn = false;
+                }
+//                TranslateTransition putOnBoard = new TranslateTransition(Duration.millis(75), pawn);
+//                putOnBoard.setByX(0);
+//                putOnBoard.setByY(-40);
+//                putOnBoard.play();
+                pawn.setTranslateX(-10);
+                pawn.setTranslateY(-40);
             }
         }
         else {
@@ -57,9 +68,6 @@ public class Player {
     }
 
     public void jump(ImageView pawn, int count, boolean sideRight) {
-
-
-
 //        int finalXTranslation = xTranslation;
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {

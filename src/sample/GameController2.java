@@ -3,7 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class gamecont2 {
+public class GameController2 {
     @FXML
     Label name1;
     Label name2;
