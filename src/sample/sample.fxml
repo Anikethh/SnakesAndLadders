@@ -27,10 +27,10 @@
       <ImageView fx:id="diceImage" fitHeight="32.0" fitWidth="31.0" layoutX="151.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@Images/dice/dice-01.png" />
       </ImageView>
-      <ImageView fx:id="bluePawn" fitHeight="49.0" fitWidth="40.0" layoutX="49.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bluePawn" fitHeight="49.0" fitWidth="40.0" layoutX="22.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@Images/bluePawn.png" />
       </ImageView>
-      <ImageView fx:id="greenPawn" fitHeight="44.0" fitWidth="32.0" layoutX="82.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="greenPawn" fitHeight="44.0" fitWidth="32.0" layoutX="26.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@Images/greenPawn.png" />
       </ImageView>
       <Button fx:id="rollButton" blendMode="MULTIPLY" layoutX="143.0" layoutY="524.0" mnemonicParsing="false" onAction="#roll" prefHeight="42.0" prefWidth="46.0" />

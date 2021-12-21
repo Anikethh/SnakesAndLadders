@@ -43,10 +43,7 @@ public class Player {
                 jumpRow(pawn);
             }
             else {
-                jump(pawn, count, coordinates[0] % 2 == 1);
-//                position += count;
-//                coordinates[0] = position/10 + 1;
-//                coordinates[1] = position%10;
+                jump(pawn, count, coordinates[1] % 10 == 1);
             }
         }
     }
@@ -55,42 +52,42 @@ public class Player {
         position += 1;
         coordinates[0] = position / 10 + 1;
         coordinates[1] = position % 10;
-
+        System.out.println(coordinates[0]);
     }
 
     public void jump(ImageView pawn, int count, boolean sideRight) {
 
-        int xTranslation = 29;
 
-        if(!sideRight){
-            xTranslation *= -1;
-        }
 
-        int finalXTranslation = xTranslation;
+//        int finalXTranslation = xTranslation;
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
-                if(coordinates[0] % 2 == 1) {
-                    TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
-                    translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+                int xTranslation = 29;
+//                sideRight = (coordinates[1] % 10) == 1;
+                if(coordinates[0] % 2 == 0){
+                    xTranslation *= -1;
+                }
+                if(coordinates[1] != 0) {
+                    TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
+//                    translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
                     translation.setByY(-20);
                     translation.setAutoReverse(true);
                     translation.setCycleCount(2);
                     translation.play();
-                    TranslateTransition xTransition = new TranslateTransition(Duration.millis(250), pawn);
+                    TranslateTransition xTransition = new TranslateTransition(Duration.millis(150), pawn);
                     xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-                    xTransition.setByX(finalXTranslation);
+                    xTransition.setByX(xTranslation);
                     xTransition.play();
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(150);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    incrementPosition();
                 }
                 else{
                     jumpRow(pawn);
-                    incrementPosition();
                 }
+                incrementPosition();
             }
         });
         thread.start();
