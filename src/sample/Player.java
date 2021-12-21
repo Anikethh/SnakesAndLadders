@@ -5,6 +5,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 
 public class Player {
@@ -16,7 +17,7 @@ public class Player {
 
     private int position;
     private boolean started;
-    private int[] coordinates = new int[2];
+    private final int[] coordinates = new int[2];
 //    private int row = coordinates[1];
     private final Color color;
     private final String name;
@@ -52,7 +53,7 @@ public class Player {
         position += 1;
         coordinates[0] = position / 10 + 1;
         coordinates[1] = position % 10;
-        System.out.println(coordinates[0]);
+        System.out.println(coordinates[1]);
     }
 
     public void jump(ImageView pawn, int count, boolean sideRight) {
@@ -62,7 +63,7 @@ public class Player {
 //        int finalXTranslation = xTranslation;
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
-                int xTranslation = 29;
+                double xTranslation = 28.5;
 //                sideRight = (coordinates[1] % 10) == 1;
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
@@ -94,6 +95,8 @@ public class Player {
     }
 
     public void jumpRow(ImageView pawn){
+        Translate trans = new Translate();
+        trans.setX(trans.getX());
         TranslateTransition translation = new TranslateTransition(Duration.millis(125), pawn);
         translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
         translation.setByY(-40.25);
