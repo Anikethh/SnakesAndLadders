@@ -40,8 +40,6 @@ public class Die {
         });
 
         thread.start();
-//        Thread.sleep(15*50);
-//        System.out.println(numberRolled);
         return numberRolled;
     }
 }

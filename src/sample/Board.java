@@ -19,10 +19,12 @@ public class Board {
     }
 
     public void setSnakes(){
-
+        Board.get(5).get(5).setHasSnakeMouth(true);
+        Board.get(5).get(5).setHasSnakeTail(true);
     }
 
     public void setLadders(){
-
+        Board.get(10).get(9).setHasLadderTop(true);
+        Board.get(4).get(5).setHasLadderBottom(true);
     }
 }

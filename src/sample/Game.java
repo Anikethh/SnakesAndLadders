@@ -95,12 +95,14 @@ public class Game {
         System.out.println(steps);
 
         if(turn) {
-            Player1.setPosition(Player1.getPosition()+steps);
+            System.out.println("Blue turn");
+//            Player1.setPosition(Player1.getPosition()+steps);
             Player1.move(bluePawn, steps);
             turn = false;
         }
         else{
-            Player2.setPosition(Player2.getPosition()+steps);
+            System.out.println("Green turn");
+//            Player2.setPosition(Player2.getPosition()+steps);
             Player2.move(greenPawn, steps);
             turn = true;
         }
@@ -135,8 +137,4 @@ public class Game {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
-
 }
