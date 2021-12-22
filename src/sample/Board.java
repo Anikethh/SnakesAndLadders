@@ -33,12 +33,16 @@ public class Board {
     }
 
     public void setSnakes(){
-        Board.get(1).setHasSnakeMouth(true);
-        Board.get(2).setHasSnakeMouth(true);
-        Board.get(3).setHasSnakeMouth(true);
-        Board.get(4).setHasSnakeMouth(true);
-        Board.get(5).setHasSnakeMouth(true);
-        Board.get(6).setHasSnakeMouth(true);
+        Board.get(15).setHasSnakeMouth(true);
+        Board.get(22).setHasSnakeMouth(true);
+        Board.get(33).setHasSnakeMouth(true);
+        Board.get(44).setHasSnakeMouth(true);
+        Board.get(68).setHasSnakeMouth(true);
+        Board.get(79).setHasSnakeMouth(true);
+        Board.get(85).setHasSnakeMouth(true);
+        Board.get(92).setHasSnakeMouth(true);
+        Board.get(94).setHasSnakeMouth(true);
+        Board.get(98).setHasSnakeMouth(true);
 //        Board.get(0).get(0).setHasSnakeMouth(true);
 //        Board.get(3).get(2).setHasSnakeMouth(true);
 //        Board.get(1).get(2).setHasSnakeTail(true);
