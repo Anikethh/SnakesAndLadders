@@ -27,6 +27,7 @@ public class Player {
     private final String name;
     private boolean blueTurn = true;
     private Scene scene;
+    Stage newStage;
     Stage stage;
 
     Player(String name, Color color, ImageView pawn, Board GameBoard, Stage stage ){
@@ -65,7 +66,7 @@ public class Player {
 
     public void jump(ImageView pawn, int count) {
 
-        position = 100;
+//        position = 100;
 
         if(position <= 100) {
             Thread thread = new Thread(() -> {
@@ -106,6 +107,16 @@ public class Player {
                 double yTranslation = -38.75;
                 int[] destination;
 
+                if (position == 3) {
+                    setPosition(24);
+                    updateCoordinates();
+                    destination = new int[]{2, 1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
                 if (position == 7) {
                     setPosition(34);
                     updateCoordinates();
@@ -134,6 +145,17 @@ public class Player {
                     move.setByX(xTranslation * destination[1]);
                     move.play();
                 }
+
+                if (position == 20) {
+                    setPosition(41);
+                    updateCoordinates();
+                    destination = new int[]{3, 0};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
                 if (position == 22) {
                     setPosition(2);
                     updateCoordinates();
@@ -143,6 +165,117 @@ public class Player {
                     move.setByX(xTranslation * destination[1]);
                     move.play();
                 }
+
+                if (position == 33) {
+                    setPosition(8);
+                    updateCoordinates();
+                    destination = new int[]{-3, 0};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 36) {
+                    setPosition(46);
+                    updateCoordinates();
+                    destination = new int[]{1, 1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 44) {
+                    setPosition(23);
+                    updateCoordinates();
+                    destination = new int[]{-3,-1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 56) {
+                    setPosition(63);
+                    updateCoordinates();
+                    destination = new int[]{1,-2};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 68) {
+                    setPosition(50);
+                    updateCoordinates();
+                    destination = new int[]{-3, 2};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 69) {
+                    setPosition(93);
+                    updateCoordinates();
+                    destination = new int[]{4,-1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 78) {
+                    setPosition(97);
+                    updateCoordinates();
+                    destination = new int[]{2, 1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 85) {
+                    setPosition(65);
+                    updateCoordinates();
+                    destination = new int[]{2, 0};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 92) {
+                    setPosition(71);
+                    updateCoordinates();
+                    destination = new int[]{-2, 1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 94) {
+                    setPosition(47);
+                    updateCoordinates();
+                    destination = new int[]{-5, 0};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
+                if (position == 98) {
+                    setPosition(82);
+                    updateCoordinates();
+                    destination = new int[]{-1,-1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY(yTranslation * destination[0]);
+                    move.setByX(xTranslation * destination[1]);
+                    move.play();
+                }
+
             });
             thread.start();
         }
@@ -199,8 +332,8 @@ public class Player {
         System.out.println("Endyr");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("winnners.fxml")));
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        newStage.setScene(scene);
+        newStage.show();
     }
 }
 
