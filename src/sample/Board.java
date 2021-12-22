@@ -34,7 +34,7 @@ public class Board {
 
     public void setSnakes(){
         Board.get(15).setHasSnakeMouth(true);
-        Board.get(15).createSnake(new Snake(5));
+        Board.get(15).createSnake(new Snake(6));
 
         Board.get(22).setHasSnakeMouth(true);
         Board.get(22).createSnake(new Snake(2));
@@ -43,7 +43,7 @@ public class Board {
         Board.get(33).createSnake(new Snake(3));
 
         Board.get(44).setHasSnakeMouth(true);
-        Board.get(44).createSnake(new Snake(22));
+        Board.get(44).createSnake(new Snake(23));
 
         Board.get(68).setHasSnakeMouth(true);
         Board.get(68).createSnake(new Snake(50));
@@ -78,7 +78,7 @@ public class Board {
         Board.get(20).createLadder(new Ladder(50));
 
         Board.get(36).setHasLadderBottom(true);
-        Board.get(36).createLadder(new Ladder(46));
+        Board.get(36).createLadder(new Ladder(45));
 
         Board.get(56).setHasLadderBottom(true);
         Board.get(56).createLadder(new Ladder(63));

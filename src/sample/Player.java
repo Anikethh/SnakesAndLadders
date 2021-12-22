@@ -116,7 +116,13 @@ public class Player {
                     destination[1] = playerCell.getLadder().getTop()[1] - coordinates[1];
                     System.out.println(destination[0] + " " + destination[1]);
 //                    climbLadder(xTranslation, yTranslation, destination);
-                    translate(xTranslation, yTranslation, destination);
+//                    translate(xTranslation, yTranslation, destination);
+                    TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+                    System.out.println("y: " + destination[0]);
+                    System.out.println("x: " + destination[1]);
+                    climbLadder.setByY(xTranslation*destination[0]);
+                    climbLadder.setByX(yTranslation*destination[1]);
+                    climbLadder.play();
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
@@ -128,7 +134,13 @@ public class Player {
                     destination[1] = playerCell.getSnake().getTail()[1] - coordinates[1];
                     System.out.println(destination[0] + " " + destination[1]);
 //                    eatenBySnake(xTranslation, yTranslation, destination);
-                    translate(xTranslation, yTranslation, destination);
+//                    translate(xTranslation, yTranslation, destination);
+                    TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+                    System.out.println("y: " + destination[0]);
+                    System.out.println("x: " + destination[1]);
+                    climbLadder.setByY(xTranslation*destination[0]);
+                    climbLadder.setByX(yTranslation*destination[1]);
+                    climbLadder.play();
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
