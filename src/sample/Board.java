@@ -40,18 +40,60 @@ public class Board {
         Board.get(22).createSnake(new Snake(2));
 
         Board.get(33).setHasSnakeMouth(true);
+        Board.get(33).createSnake(new Snake(8));
+
         Board.get(44).setHasSnakeMouth(true);
+        Board.get(44).createSnake(new Snake(22));
+
         Board.get(68).setHasSnakeMouth(true);
+        Board.get(68).createSnake(new Snake(50));
+
         Board.get(79).setHasSnakeMouth(true);
+        Board.get(79).createSnake(new Snake(43));
+
         Board.get(85).setHasSnakeMouth(true);
+        Board.get(85).createSnake(new Snake(65));
+
         Board.get(92).setHasSnakeMouth(true);
+        Board.get(92).createSnake(new Snake(71));
+
         Board.get(94).setHasSnakeMouth(true);
+        Board.get(94).createSnake(new Snake(47));
+
         Board.get(98).setHasSnakeMouth(true);
+        Board.get(98).createSnake(new Snake(82));
     }
 
     public void setLadders(){
+        Board.get(3).setHasLadderBottom(true);
+        Board.get(3).createLadder(new Ladder(24));
+
+        Board.get(7).setHasLadderBottom(true);
+        Board.get(7).createLadder(new Ladder(34));
+
+        Board.get(12).setHasLadderBottom(true);
+        Board.get(12).createLadder(new Ladder(31));
+
         Board.get(20).setHasLadderBottom(true);
         Board.get(20).createLadder(new Ladder(41));
+
+        Board.get(36).setHasLadderBottom(true);
+        Board.get(36).createLadder(new Ladder(46));
+
+        Board.get(56).setHasLadderBottom(true);
+        Board.get(56).createLadder(new Ladder(63));
+
+        Board.get(60).setHasLadderBottom(true);
+        Board.get(60).createLadder(new Ladder(81));
+
+        Board.get(69).setHasLadderBottom(true);
+        Board.get(69).createLadder(new Ladder(93));
+
+        Board.get(75).setHasLadderBottom(true);
+        Board.get(75).createLadder(new Ladder(95));
+
+        Board.get(78).setHasLadderBottom(true);
+        Board.get(78).createLadder(new Ladder(97));
     }
 }
 
