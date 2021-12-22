@@ -97,9 +97,9 @@ public class Player {
                     }
                 }
                 incrementPosition();
-                if(position == 100){
-                    endGame();
-                }
+//                if(position == 100){
+//                    endGame();
+//                }
                 Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
                 int[] destination = new int[2];
                 try {
@@ -157,11 +157,11 @@ public class Player {
         return name;
     }
 
-    public void endGame() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("End.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void endGame() throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("End.fxml")));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 }
