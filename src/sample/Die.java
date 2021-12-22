@@ -19,6 +19,7 @@ public class Die {
     private ImageView diceImage;
     @FXML
     private Button rollButton;
+
     @FXML
     int roll(ActionEvent event, Button rollButton, ImageView diceImage) throws InterruptedException {
 
