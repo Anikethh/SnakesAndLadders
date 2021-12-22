@@ -51,10 +51,6 @@ public class Player {
                     blueTurn = false;
                     pawn.setTranslateY(-37);
                 }
-//                TranslateTransition putOnBoard = new TranslateTransition(Duration.millis(75), pawn);
-//                putOnBoard.setByX(0);
-//                putOnBoard.setByY(-40);
-//                putOnBoard.play();
             }
         }
         else {
@@ -69,95 +65,79 @@ public class Player {
     }
 
     public void jump(ImageView pawn, int count) {
-        Thread thread = new Thread(() -> {
 
-            for(int i = 0; i < count; i++) {
+        position = 100;
+
+        if(position <= 100) {
+            Thread thread = new Thread(() -> {
+
+                if(position == 100){
+                    try {
+                        endGame();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                for (int i = 0; i < count; i++) {
+                    double xTranslation = 29.70;
+                    double yTranslation = -37.75;
+                    if (coordinates[0] % 2 == 0) {
+                        xTranslation *= -1;
+                    }
+                    if (coordinates[1] != 0) {
+                        jumpAnimation(pawn);
+                        horizontalMove(pawn, xTranslation);
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        verticalMove(pawn, yTranslation);
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    incrementPosition();
+                }
                 double xTranslation = 29.70;
-                double yTranslation = -37.75;
-                if(coordinates[0] % 2 == 0){
-                    xTranslation *= -1;
-                }
-                if(coordinates[1] != 0) {
-                    jumpAnimation(pawn);
-                    horizontalMove(pawn, xTranslation);
-                    try {
-                        Thread.sleep(150);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                else{
-                    verticalMove(pawn, yTranslation);
-                    try {
-                        Thread.sleep(150);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                incrementPosition();
-            }
+                double yTranslation = -38.75;
+                int[] destination;
 
-            double xTranslation = 29.70;
-            double yTranslation = -38.75;
-
-            playerCell = GameBoard.getBoard().get(position);
-            System.out.println(playerCell.getPosition());
-//            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
-//            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
-                if(position >= 100){
-                try {
-//                    win.setVisible(true);
-                    endGame();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-                }
-            int[] destination = new int[2];
-            int[] yr = new int[2];
-            try {
-                if (playerCell.isHasLadderBottom()) {
-                    System.out.println("Ladder detected");
-                    destination[0] = playerCell.getLadder().getTop()[0] - coordinates[0];
-                    destination[1] = playerCell.getLadder().getTop()[1] - coordinates[1];
-                    System.out.println(destination[0] + " " + destination[1]);
-//                    climbLadder(xTranslation, yTranslation, destination);
-//                    translate(xTranslation, yTranslation, destination);
-                    TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+                if (position == 12) {
+                    destination = new int[]{2, 1};
+//                translate(xTranslation, yTranslation, destination);
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
                     System.out.println("y: " + destination[0]);
                     System.out.println("x: " + destination[1]);
-                    climbLadder.setByY(yTranslation*destination[0]);
-                    climbLadder.setByX(xTranslation*destination[1]);
-                    climbLadder.play();
-                    try {
-                        Thread.sleep(250);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else if (playerCell.isHasSnakeMouth()) {
-                    System.out.println("Snake Detected");
-                    destination[0] = playerCell.getSnake().getTail()[0] - coordinates[0];
-                    destination[1] = playerCell.getSnake().getTail()[1] - coordinates[1];
-                    System.out.println(destination[0] + " " + destination[1]);
-//                    eatenBySnake(xTranslation, yTranslation, destination);
-//                    translate(xTranslation, yTranslation, destination);
-                    TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+                    move.setByY((-1) * xTranslation * destination[0]);
+                    move.setByX(yTranslation * destination[1]);
+                    move.play();
+                }
+                if (position == 15) {
+                    destination = new int[]{-1, -1};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
                     System.out.println("y: " + destination[0]);
                     System.out.println("x: " + destination[1]);
-                    climbLadder.setByY(yTranslation*destination[0]);
-                    climbLadder.setByX(xTranslation*destination[1]);
-                    climbLadder.play();
-                    try {
-                        Thread.sleep(250);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    move.setByY((-1) * xTranslation * destination[0]);
+                    move.setByX(yTranslation * destination[1]);
+                    move.play();
                 }
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        });
-        thread.start();
+                if (position == 22) {
+                    destination = new int[]{-2, 0};
+                    TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                    System.out.println("y: " + destination[0]);
+                    System.out.println("x: " + destination[1]);
+                    move.setByY((-1) * xTranslation * destination[0]);
+                    move.setByX(yTranslation * destination[1]);
+                    move.play();
+                }
+            });
+            thread.start();
+        }
     }
 
     public void translate(double xTransition, double yTransition, int[] destination){
@@ -166,30 +146,6 @@ public class Player {
         System.out.println("x: " + destination[1]);
         climbLadder.setByY((-1)*xTransition*destination[0]);
         climbLadder.setByX(yTransition*destination[1]);
-        climbLadder.play();
-//        TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
-//        translation.setByY(-20);
-//        translation.setAutoReverse(true);
-//        translation.setCycleCount(2);
-//        translation.play();
-    }
-
-    public void climbLadder(double xTransition, double yTransition, int[] destination){
-        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        System.out.println("x: " + destination[0]);
-        System.out.println("y: " + destination[1]);
-        climbLadder.setByX(yTransition*destination[0]);
-        climbLadder.setByY(xTransition*destination[1]);
-        climbLadder.play();
-    }
-//    (-1)
-
-    public void eatenBySnake(double xTransition, double yTransition, int[] destination){
-        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        System.out.println("x: " + destination[0]);
-        System.out.println("y: " + destination[1]);
-        climbLadder.setByX(yTransition*destination[0]);
-        climbLadder.setByY(xTransition*destination[1]);
         climbLadder.play();
     }
 
@@ -227,16 +183,67 @@ public class Player {
     }
 
     public void endGame() throws IOException {
+        System.out.println("Endyr");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("winnners.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("End.fxml")));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
     }
 }
-//  fxid.setopacity(0);
-//fxid.setvisible(false);
+
+//playerCell = GameBoard.getBoard().get(position);
+//        System.out.println(playerCell.getPosition());
+////            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
+////            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
+//        if(position >= 100){
+//        try {
+////                    win.setVisible(true);
+//        endGame();
+//        } catch (IOException e) {
+//        e.printStackTrace();
+//        }
+//        return;
+//        }
+//        int[] destination = new int[2];
+//        int[] yr = new int[2];
+//        try {
+//        if (playerCell.isHasLadderBottom()) {
+//        System.out.println("Ladder detected");
+//        destination[0] = playerCell.getLadder().getTop()[0] - coordinates[0];
+//        destination[1] = playerCell.getLadder().getTop()[1] - coordinates[1];
+//        System.out.println(destination[0] + " " + destination[1]);
+////                    climbLadder(xTranslation, yTranslation, destination);
+////                    translate(xTranslation, yTranslation, destination);
+//        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+//        System.out.println("y: " + destination[0]);
+//        System.out.println("x: " + destination[1]);
+//        climbLadder.setByY(yTranslation*destination[0]);
+//        climbLadder.setByX(xTranslation*destination[1]);
+//        climbLadder.play();
+//        try {
+//        Thread.sleep(250);
+//        } catch (InterruptedException e) {
+//        e.printStackTrace();
+//        }
+//        } else if (playerCell.isHasSnakeMouth()) {
+//        System.out.println("Snake Detected");
+//        destination[0] = playerCell.getSnake().getTail()[0] - coordinates[0];
+//        destination[1] = playerCell.getSnake().getTail()[1] - coordinates[1];
+//        System.out.println(destination[0] + " " + destination[1]);
+////                    eatenBySnake(xTranslation, yTranslation, destination);
+////                    translate(xTranslation, yTranslation, destination);
+//        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+//        System.out.println("y: " + destination[0]);
+//        System.out.println("x: " + destination[1]);
+//        climbLadder.setByY(yTranslation*destination[0]);
+//        climbLadder.setByX(xTranslation*destination[1]);
+//        climbLadder.play();
+//        try {
+//        Thread.sleep(250);
+//        } catch (InterruptedException e) {
+//        e.printStackTrace();
+//        }
+//        }
+//        } catch (Exception e){
+//        e.printStackTrace();
+//        }

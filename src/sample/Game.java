@@ -43,7 +43,7 @@ public class Game {
     public TextField player1;
     public TextField player2;
     public Button replay;
-    public Button backk;
+    public Button backButton;
     @FXML
     public Rectangle p1shadow;
     @FXML

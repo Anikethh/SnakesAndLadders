@@ -6,20 +6,10 @@ public class Board {
 
     private final int Dimensions = 11;
     private final int[] coordinateArray = new int[100];
-//    private final ArrayList<ArrayList<Cell>> Board = new ArrayList<ArrayList<Cell>>(Dimensions+1);
     private final ArrayList<Cell> Board = new ArrayList<>(101);
 
     public void populateBoard(){
         int position = 1;
-//        for(int i = 1; i < Dimensions; i++){
-//            Board.add(new ArrayList<Cell>(Dimensions));
-//            for(int j = 1; j < Dimensions; j++){
-//                int[] coordinates = {i, j};
-//                Cell newCell = new Cell(position, coordinates);
-//                position++;
-//                Board.get(i).add(newCell);
-//            }
-//        }
         for (int i = 0; i < 101; i++){
             int[] coordinates = {i, 0};
             Cell newCell = new Cell(position, coordinates);
@@ -34,13 +24,13 @@ public class Board {
 
     public void setSnakes(){
         Board.get(15).setHasSnakeMouth(true);
-        Board.get(15).createSnake(new Snake(6));
+        Board.get(15).createSnake(new Snake(5));
 
         Board.get(22).setHasSnakeMouth(true);
         Board.get(22).createSnake(new Snake(2));
 
         Board.get(33).setHasSnakeMouth(true);
-        Board.get(33).createSnake(new Snake(3));
+        Board.get(33).createSnake(new Snake(8));
 
         Board.get(44).setHasSnakeMouth(true);
         Board.get(44).createSnake(new Snake(23));
@@ -49,7 +39,7 @@ public class Board {
         Board.get(68).createSnake(new Snake(50));
 
         Board.get(79).setHasSnakeMouth(true);
-        Board.get(79).createSnake(new Snake(48));
+        Board.get(79).createSnake(new Snake(43));
 
         Board.get(85).setHasSnakeMouth(true);
         Board.get(85).createSnake(new Snake(65));
@@ -58,10 +48,10 @@ public class Board {
         Board.get(92).createSnake(new Snake(71));
 
         Board.get(94).setHasSnakeMouth(true);
-        Board.get(94).createSnake(new Snake(44));
+        Board.get(94).createSnake(new Snake(47));
 
         Board.get(98).setHasSnakeMouth(true);
-        Board.get(98).createSnake(new Snake(89));
+        Board.get(98).createSnake(new Snake(82));
     }
 
     public void setLadders(){
@@ -69,10 +59,10 @@ public class Board {
         Board.get(3).createLadder(new Ladder(24));
 
         Board.get(7).setHasLadderBottom(true);
-        Board.get(7).createLadder(new Ladder(37));
+        Board.get(7).createLadder(new Ladder(34));
 
         Board.get(12).setHasLadderBottom(true);
-        Board.get(12).createLadder(new Ladder(40));
+        Board.get(12).createLadder(new Ladder(31));
 
         Board.get(20).setHasLadderBottom(true);
         Board.get(20).createLadder(new Ladder(50));
