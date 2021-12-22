@@ -104,6 +104,7 @@ public class Player {
             System.out.println(currentCell.isHasSnakeMouth());
 //                if(position == 100){
 //                    endGame();
+//            return;
 //                }
             int[] destination = new int[2];
             try {
@@ -111,20 +112,32 @@ public class Player {
                     System.out.println("Ladder detected");
                     destination[0] = currentCell.getLadder().getTop()[0];
                     destination[1] = currentCell.getLadder().getTop()[1];
-                    pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
-                    pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
+                    climbLadder(xTranslation, yTranslation, destination);
                 } else if (currentCell.isHasSnakeMouth()) {
                     System.out.println("Snake Detected");
-                    destination[0] = currentCell.getLadder().getTop()[0];
-                    destination[1] = currentCell.getLadder().getTop()[1];
-                    pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
-                    pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
+                    destination[0] = currentCell.getSnake().getTail()[0];
+                    destination[1] = currentCell.getSnake().getTail()[1];
+                    eatenBySnake(xTranslation, yTranslation, destination);
                 }
             } catch (Exception e){
                 e.printStackTrace();
             }
         });
         thread.start();
+    }
+
+    public void climbLadder(double xTransition, double yTransition, int[] destination){
+        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+        climbLadder.setByX(xTransition*destination[0]);
+        climbLadder.setByY((-1)*yTransition*destination[1]);
+        climbLadder.play();
+    }
+
+    public void eatenBySnake(double xTransition, double yTransition, int[] destination){
+        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
+        climbLadder.setByX((-1)*xTransition*destination[0]);
+        climbLadder.setByY(yTransition*destination[1]);
+        climbLadder.play();
     }
 
     public void jumpAnimation(ImageView pawn){

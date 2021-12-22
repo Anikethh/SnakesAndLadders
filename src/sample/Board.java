@@ -34,7 +34,11 @@ public class Board {
 
     public void setSnakes(){
         Board.get(15).setHasSnakeMouth(true);
+        Board.get(15).createSnake(new Snake(5));
+
         Board.get(22).setHasSnakeMouth(true);
+        Board.get(22).createSnake(new Snake(2));
+
         Board.get(33).setHasSnakeMouth(true);
         Board.get(44).setHasSnakeMouth(true);
         Board.get(68).setHasSnakeMouth(true);
@@ -43,18 +47,11 @@ public class Board {
         Board.get(92).setHasSnakeMouth(true);
         Board.get(94).setHasSnakeMouth(true);
         Board.get(98).setHasSnakeMouth(true);
-//        Board.get(0).get(0).setHasSnakeMouth(true);
-//        Board.get(3).get(2).setHasSnakeMouth(true);
-//        Board.get(1).get(2).setHasSnakeTail(true);
-//        Board.get(2).get(5).setHasSnakeMouth(true);
-//        Board.get(1).get(5).setHasSnakeTail(true);
-//        Board.get(4).get(3).setHasSnakeMouth(true);
-//        Board.get(4).get(2).setHasSnakeTail(true);
     }
 
     public void setLadders(){
-//        Board.get(10).get(9).setHasLadderTop(true);
-//        Board.get(4).get(5).setHasLadderBottom(true);
+        Board.get(20).setHasLadderBottom(true);
+        Board.get(20).createLadder(new Ladder(41));
     }
 }
 
@@ -63,6 +60,12 @@ class Snake{
     private int[] tail = new int[2];
     private int mouthPosition;
     private int tailPosition;
+
+    public Snake(int tailPosition){
+        this.tailPosition = tailPosition;
+        tail[0] = tailPosition/10 + 1;
+        tail[1] = tailPosition%10;
+    }
 
     public int[] getTail() {
         return tail;
@@ -74,6 +77,12 @@ class Ladder{
     private int[] top = new int[2];
     private int bottomPosition;
     private int topPosition;
+
+    public Ladder(int topPosition){
+        this.topPosition = topPosition;
+        top[0] = topPosition/10 + 1;
+        top[1] = topPosition%10;
+    }
 
     public int[] getBottom() {
         return bottom;
