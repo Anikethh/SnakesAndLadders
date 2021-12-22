@@ -6,14 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="677.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
-   <children>
-      <ImageView fitHeight="684.0" fitWidth="346.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sample/Images/winner-01.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="replay" layoutX="120.0" layoutY="407.0" mnemonicParsing="false" onAction="#winnertogame" opacity="0.0" prefHeight="36.0" prefWidth="96.0" text="Replay" />
-      <Button fx:id="backk" layoutX="146.0" layoutY="484.0" mnemonicParsing="false" opacity="0.0" prefHeight="36.0" prefWidth="39.0" text="backk" />
-   </children>
+<AnchorPane prefHeight="677.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.Game">
+   <ImageView fitHeight="684.0" fitWidth="346.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@sample/Images/winner-01.png"/>
+   </ImageView>
+   <Button fx:id="replay" layoutX="120.0" layoutY="407.0" mnemonicParsing="false" onAction="#winnertogame" opacity="0.0"
+           prefHeight="36.0" prefWidth="96.0" text="Replay"/>
+   <ImageView fitHeight="36.0" fitWidth="120.0" layoutX="119.0" layoutY="486.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@sample/Images/menu-02.png"/>
+   </ImageView>
+   <Button fx:id="backk" layoutX="124.0" layoutY="486.0" mnemonicParsing="false" onAction="#playerToCover" opacity="0.0"
+           prefHeight="36.0" prefWidth="87.0" text="backk"/>
 </AnchorPane>
