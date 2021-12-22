@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,6 +44,11 @@ public class Game {
     public TextField player2;
     public Button replay;
     public Button backk;
+    @FXML
+    public Rectangle p1shadow;
+    @FXML
+    public Rectangle p2shadow;
+
 
     @FXML
     private ImageView diceImage;
@@ -96,6 +102,15 @@ public class Game {
     void roll(ActionEvent event) throws InterruptedException, IOException {
 
         int steps = Die.roll(event, rollButton, diceImage);
+
+        if(p2shadow.isVisible()){
+            p2shadow.setVisible(false);
+            p1shadow.setVisible(true);
+        }
+        else{
+            p2shadow.setVisible(true);
+            p1shadow.setVisible(false);
+        }
 
         if(turn) {
             Player1.move(bluePawn, steps);
