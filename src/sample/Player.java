@@ -65,12 +65,11 @@ public class Player {
     public void jump(ImageView pawn, int count) {
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
-                double xTranslation = 29;
+                double xTranslation = 29.75;
 
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
-
                 if(coordinates[1] != 0) {
                     TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
 //                    translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
@@ -101,24 +100,33 @@ public class Player {
                     thread1.start();
                 }
                 incrementPosition();
+                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
+                int destinationX;
+                int destinationY;
+                if(currentCell.isHasLadderBottom()){
+                    destinationX = currentCell.getLadder().getTop()[0];
+                    destinationY = currentCell.getLadder().getTop()[1];
+
+                }
+                else if(currentCell.isHasSnakeMouth()){
+                    destinationX = currentCell.getLadder().getTop()[0];
+                    destinationY = currentCell.getLadder().getTop()[1];
+                }
             }
-//            Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
-//            if(currentCell.isHasLadderBottom()){
-//                int destinationX = currentCell.getLadder().getTop()[0];
-//            }
         });
         thread.start();
     }
 
     public void jumpRow(ImageView pawn){
-            TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
-            translation.setByY(-20);
-            translation.setAutoReverse(true);
-            translation.setCycleCount(2);
-            translation.play();
+//            TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
+//            translation.setByY(-20);
+//            translation.setAutoReverse(true);
+//            translation.setCycleCount(2);
+//            translation.play();
+        double yTranslation = -38;
             TranslateTransition translationY = new TranslateTransition(Duration.millis(150), pawn);
-            translationY.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-            translationY.setByY(-38);
+//            translationY.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+            translationY.setByY(yTranslation);
             translationY.play();
     }
 
