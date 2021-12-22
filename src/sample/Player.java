@@ -231,6 +231,16 @@ public class Player {
                 move.play();
             }
 
+            if (position == 75) {
+                setPosition(95);
+                updateCoordinates();
+                destination = new int[]{2, 0};
+                TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                move.setByY(yTranslation * destination[0]);
+                move.setByX(xTranslation * destination[1]);
+                move.play();
+            }
+
             if (position == 78) {
                 setPosition(97);
                 updateCoordinates();
