@@ -1,4 +1,5 @@
 package sample;
+import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleObjectProperty;
@@ -48,6 +49,7 @@ public class Game {
     public Rectangle p1shadow;
     @FXML
     public Rectangle p2shadow;
+    public ImageView arrow;
 
 
     @FXML
@@ -80,6 +82,15 @@ public class Game {
 //        Player2.setPosition(0);
     }
 
+    public void arrowAnimation(ImageView arrow) throws InterruptedException {
+        TranslateTransition translation = new TranslateTransition(Duration.millis(200), arrow);
+        translation.setByY(-20);
+        translation.setAutoReverse(true);
+        translation.setCycleCount(Animation.INDEFINITE);
+//        translation.setCycleCount(10);
+        translation.play();
+    }
+
     public void exit(ActionEvent event) {
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -106,10 +117,14 @@ public class Game {
         if(p2shadow.isVisible()){
             p2shadow.setVisible(false);
             p1shadow.setVisible(true);
+            arrowAnimation(arrow);
+
         }
         else{
             p2shadow.setVisible(true);
             p1shadow.setVisible(false);
+            arrowAnimation(arrow);
+
         }
 
         if(turn) {
