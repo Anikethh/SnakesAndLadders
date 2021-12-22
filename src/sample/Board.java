@@ -72,7 +72,7 @@ public class Board {
         Board.get(7).createLadder(new Ladder(37));
 
         Board.get(12).setHasLadderBottom(true);
-        Board.get(12).createLadder(new Ladder(31));
+        Board.get(12).createLadder(new Ladder(40));
 
         Board.get(20).setHasLadderBottom(true);
         Board.get(20).createLadder(new Ladder(50));

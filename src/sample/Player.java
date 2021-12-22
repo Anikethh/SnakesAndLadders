@@ -120,8 +120,8 @@ public class Player {
                     TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
                     System.out.println("y: " + destination[0]);
                     System.out.println("x: " + destination[1]);
-                    climbLadder.setByY(xTranslation*destination[0]);
-                    climbLadder.setByX(yTranslation*destination[1]);
+                    climbLadder.setByY(yTranslation*destination[0]);
+                    climbLadder.setByX(xTranslation*destination[1]);
                     climbLadder.play();
                     try {
                         Thread.sleep(250);
@@ -138,8 +138,8 @@ public class Player {
                     TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
                     System.out.println("y: " + destination[0]);
                     System.out.println("x: " + destination[1]);
-                    climbLadder.setByY(xTranslation*destination[0]);
-                    climbLadder.setByX(yTranslation*destination[1]);
+                    climbLadder.setByY(yTranslation*destination[0]);
+                    climbLadder.setByX(xTranslation*destination[1]);
                     climbLadder.play();
                     try {
                         Thread.sleep(250);
