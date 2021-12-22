@@ -17,7 +17,7 @@
    </rowConstraints>
    <AnchorPane fx:id="background" prefHeight="628.0" prefWidth="332.0">
       <ImageView fx:id="imageview" fitHeight="663.0" fitWidth="332.0" layoutX="3.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@Screenshot_20211219-181108-01.png" />
+         <Image url="@GameBoard.png" />
       </ImageView>
       <Button fx:id="exitButton" blendMode="MULTIPLY" layoutX="17.0" layoutY="34.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="0.0" prefWidth="24.0" />
       <ImageView fx:id="diceImage" fitHeight="32.0" fitWidth="31.0" layoutX="153.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">

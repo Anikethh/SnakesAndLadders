@@ -23,8 +23,12 @@ public class Board {
     }
 
     public void setSnakes(){
-        Board.get(5).get(5).setHasSnakeMouth(true);
-        Board.get(5).get(5).setHasSnakeTail(true);
+        Board.get(3).get(2).setHasSnakeMouth(true);
+        Board.get(1).get(2).setHasSnakeTail(true);
+        Board.get(2).get(5).setHasSnakeMouth(true);
+        Board.get(1).get(5).setHasSnakeTail(true);
+        Board.get(4).get(3).setHasSnakeMouth(true);
+        Board.get(4).get(2).setHasSnakeTail(true);
     }
 
     public void setLadders(){

@@ -64,7 +64,7 @@ public class Player {
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
                 double xTranslation = 29.75;
-
+                double yTranslation = -38;
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
@@ -78,7 +78,7 @@ public class Player {
                     }
                 }
                 else{
-                    verticalMove(pawn);
+                    verticalMove(pawn, yTranslation);
                     try {
                         Thread.sleep(150);
                     } catch (InterruptedException e) {
@@ -86,17 +86,24 @@ public class Player {
                     }
                 }
                 incrementPosition();
-//                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
-//                int[] destination = new int[2];
-//                if(currentCell.isHasLadderBottom()){
-//                    destination[0] = currentCell.getLadder().getTop()[0];
-//                    destination[1] = currentCell.getLadder().getTop()[1];
-//
-//                }
-//                else if(currentCell.isHasSnakeMouth()){
-//                    destination[0] = currentCell.getLadder().getTop()[0];
-//                    destination[1] = currentCell.getLadder().getTop()[1];
-//                }
+                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
+                int[] destination = new int[2];
+                try {
+                    if (currentCell.isHasLadderBottom()) {
+                        destination[0] = currentCell.getLadder().getTop()[0];
+                        destination[1] = currentCell.getLadder().getTop()[1];
+                        pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
+                        pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
+                    } else if (currentCell.isHasSnakeMouth()) {
+                        System.out.println();
+                        destination[0] = currentCell.getLadder().getTop()[0];
+                        destination[1] = currentCell.getLadder().getTop()[1];
+                        pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
+                        pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
         thread.start();
@@ -117,8 +124,7 @@ public class Player {
         xTransition.play();
     }
 
-    public void verticalMove(ImageView pawn){
-        double yTranslation = -38;
+    public void verticalMove(ImageView pawn, double yTranslation){
         TranslateTransition translationY = new TranslateTransition(Duration.millis(150), pawn);
         translationY.setByY(yTranslation);
         translationY.play();
