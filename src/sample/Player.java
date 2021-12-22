@@ -74,8 +74,8 @@ public class Player {
     public void jump(ImageView pawn, int count) {
         Thread thread = new Thread(() -> {
             for(int i = 0; i < count; i++) {
-                double xTranslation = 29.75;
-                double yTranslation = -38;
+                double xTranslation = 29.60;
+                double yTranslation = -37.75;
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
@@ -96,11 +96,13 @@ public class Player {
                         e.printStackTrace();
                     }
                 }
+//                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
+                Cell currentCell = GameBoard.getBoard().get(position);
+                System.out.println(currentCell.getPosition());
                 incrementPosition();
 //                if(position == 100){
 //                    endGame();
 //                }
-                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
                 int[] destination = new int[2];
                 try {
                     if (currentCell.isHasLadderBottom()) {
