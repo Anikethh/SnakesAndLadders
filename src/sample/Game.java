@@ -41,6 +41,8 @@ public class Game {
     public ImageView imageview;
     public TextField player1;
     public TextField player2;
+    public Button replay;
+    public Button backk;
 
     @FXML
     private ImageView diceImage;
@@ -127,6 +129,14 @@ public class Game {
     }
 
     public void playerToGame(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void winnertogame(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
