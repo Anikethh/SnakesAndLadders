@@ -98,8 +98,8 @@ public class Player {
 
             playerCell = GameBoard.getBoard().get(position);
             System.out.println(playerCell.getPosition());
-            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
-            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
+//            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
+//            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
 //                if(position == 100){
 //                    endGame();
 //            return;
@@ -109,12 +109,11 @@ public class Player {
             try {
                 if (playerCell.isHasLadderBottom()) {
                     System.out.println("Ladder detected");
-                    destination[0] = playerCell.getLadder().getTop()[0];
-                    destination[1] = playerCell.getLadder().getTop()[1];
-                    yr[0] = destination[0] - coordinates[0];
-                    yr[1] = destination[1] - coordinates[1];
+                    destination[0] = playerCell.getLadder().getTop()[0] - coordinates[0];
+                    destination[1] = playerCell.getLadder().getTop()[1] - coordinates[1];
                     System.out.println(destination[0] + " " + destination[1]);
-                    climbLadder(xTranslation, yTranslation, yr);
+//                    climbLadder(xTranslation, yTranslation, destination);
+                    translate(xTranslation, yTranslation, destination);
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
@@ -122,12 +121,11 @@ public class Player {
                     }
                 } else if (playerCell.isHasSnakeMouth()) {
                     System.out.println("Snake Detected");
-                    destination[0] = playerCell.getSnake().getTail()[0];
-                    destination[1] = playerCell.getSnake().getTail()[1];
-                    yr[0] = destination[0] - coordinates[0];
-                    yr[1] = destination[1] - coordinates[1];
+                    destination[0] = playerCell.getSnake().getTail()[0] - coordinates[0];
+                    destination[1] = playerCell.getSnake().getTail()[1] - coordinates[1];
                     System.out.println(destination[0] + " " + destination[1]);
-                    eatenBySnake(xTranslation, yTranslation, yr);
+//                    eatenBySnake(xTranslation, yTranslation, destination);
+                    translate(xTranslation, yTranslation, destination);
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
@@ -141,23 +139,18 @@ public class Player {
         thread.start();
     }
 
-    public void climbLadder(double xTransition, double yTransition, int[] destination){
+    public void translate(double xTransition, double yTransition, int[] destination){
         TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        System.out.println("x: " + destination[0]);
-        System.out.println("y: " + destination[1]);
-        climbLadder.setByX(yTransition*destination[0]);
-        climbLadder.setByY(xTransition*destination[1]);
+        System.out.println("y: " + destination[0]);
+        System.out.println("x: " + destination[1]);
+        climbLadder.setByY((-1)*xTransition*destination[0]);
+        climbLadder.setByX(yTransition*destination[1]);
         climbLadder.play();
-    }
-//    (-1)
-
-    public void eatenBySnake(double xTransition, double yTransition, int[] destination){
-        TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        System.out.println("x: " + destination[0]);
-        System.out.println("y: " + destination[1]);
-        climbLadder.setByX(yTransition*destination[0]);
-        climbLadder.setByY(xTransition*destination[1]);
-        climbLadder.play();
+        TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
+        translation.setByY(-20);
+        translation.setAutoReverse(true);
+        translation.setCycleCount(2);
+        translation.play();
     }
 
     public void jumpAnimation(ImageView pawn){
