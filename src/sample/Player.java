@@ -73,9 +73,10 @@ public class Player {
 
     public void jump(ImageView pawn, int count) {
         Thread thread = new Thread(() -> {
-            double xTranslation = 29.70;
-            double yTranslation = -37.75;
+
             for(int i = 0; i < count; i++) {
+                double xTranslation = 29.70;
+                double yTranslation = -37.75;
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
@@ -98,6 +99,10 @@ public class Player {
                 }
                 incrementPosition();
             }
+
+            double xTranslation = 29.70;
+            double yTranslation = -37.75;
+
             Cell currentCell = GameBoard.getBoard().get(position-1);
             System.out.println(currentCell.getPosition());
             System.out.println(GameBoard.getBoard().get(position-1).isHasSnakeMouth());
