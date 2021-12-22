@@ -3,18 +3,12 @@ package sample;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class Player {
 
@@ -26,7 +20,6 @@ public class Player {
     private int position;
     private boolean started;
     private final int[] coordinates = new int[2];
-//    private int row = coordinates[1];
     private final Color color;
     private final String name;
     private boolean blueTurn = true;
@@ -103,26 +96,43 @@ public class Player {
             double xTranslation = 29.70;
             double yTranslation = -37.75;
 
-            Cell currentCell = GameBoard.getBoard().get(position-1);
-            System.out.println(currentCell.getPosition());
-            System.out.println(GameBoard.getBoard().get(position-1).isHasSnakeMouth());
-            System.out.println(currentCell.isHasSnakeMouth());
+            playerCell = GameBoard.getBoard().get(position);
+            System.out.println(playerCell.getPosition());
+            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
+            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
 //                if(position == 100){
 //                    endGame();
 //            return;
 //                }
             int[] destination = new int[2];
+            int[] yr = new int[2];
             try {
-                if (currentCell.isHasLadderBottom()) {
+                if (playerCell.isHasLadderBottom()) {
                     System.out.println("Ladder detected");
-                    destination[0] = currentCell.getLadder().getTop()[0];
-                    destination[1] = currentCell.getLadder().getTop()[1];
-                    climbLadder(xTranslation, yTranslation, destination);
-                } else if (currentCell.isHasSnakeMouth()) {
+                    destination[0] = playerCell.getLadder().getTop()[0];
+                    destination[1] = playerCell.getLadder().getTop()[1];
+                    yr[0] = destination[0] - coordinates[0];
+                    yr[1] = destination[1] - coordinates[1];
+                    System.out.println(destination[0] + " " + destination[1]);
+                    climbLadder(xTranslation, yTranslation, yr);
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else if (playerCell.isHasSnakeMouth()) {
                     System.out.println("Snake Detected");
-                    destination[0] = currentCell.getSnake().getTail()[0];
-                    destination[1] = currentCell.getSnake().getTail()[1];
-                    eatenBySnake(xTranslation, yTranslation, destination);
+                    destination[0] = playerCell.getSnake().getTail()[0];
+                    destination[1] = playerCell.getSnake().getTail()[1];
+                    yr[0] = destination[0] - coordinates[0];
+                    yr[1] = destination[1] - coordinates[1];
+                    System.out.println(destination[0] + " " + destination[1]);
+                    eatenBySnake(xTranslation, yTranslation, yr);
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             } catch (Exception e){
                 e.printStackTrace();
@@ -133,15 +143,20 @@ public class Player {
 
     public void climbLadder(double xTransition, double yTransition, int[] destination){
         TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        climbLadder.setByX(xTransition*destination[0]);
-        climbLadder.setByY((-1)*yTransition*destination[1]);
+        System.out.println("x: " + destination[0]);
+        System.out.println("y: " + destination[1]);
+        climbLadder.setByX(yTransition*destination[0]);
+        climbLadder.setByY(xTransition*destination[1]);
         climbLadder.play();
     }
+//    (-1)
 
     public void eatenBySnake(double xTransition, double yTransition, int[] destination){
         TranslateTransition climbLadder = new TranslateTransition(Duration.millis(250), pawn);
-        climbLadder.setByX((-1)*xTransition*destination[0]);
-        climbLadder.setByY(yTransition*destination[1]);
+        System.out.println("x: " + destination[0]);
+        System.out.println("y: " + destination[1]);
+        climbLadder.setByX(yTransition*destination[0]);
+        climbLadder.setByY(xTransition*destination[1]);
         climbLadder.play();
     }
 

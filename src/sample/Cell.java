@@ -21,7 +21,7 @@ public class Cell {
     }
 
     public void createLadder(Ladder newLadder){
-        this.ladder = ladder;
+        this.ladder = newLadder;
     }
 
     public boolean isHasSnakeMouth() {
