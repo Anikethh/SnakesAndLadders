@@ -3,16 +3,12 @@ package sample;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Player {
 
@@ -104,14 +100,10 @@ public class Player {
             System.out.println(playerCell.getPosition());
             System.out.println("Snake: " + playerCell.isHasSnakeMouth());
             System.out.println("Ladder: " + playerCell.isHasLadderBottom());
-                if(position == 100){
-                    try {
-                        endGame();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return;
-                }
+//                if(position == 100){
+//                    endGame();
+//            return;
+//                }
             int[] destination = new int[2];
             int[] yr = new int[2];
             try {
@@ -201,14 +193,11 @@ public class Player {
         return name;
     }
 
-    public void endGame() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("winners.fxml")));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//    public void endGame() throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("End.fxml")));
 //        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);
 //        stage.setScene(scene);
 //        stage.show();
-    }
+//    }
 }
