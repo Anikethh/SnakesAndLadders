@@ -90,12 +90,13 @@ public class Player {
                 int[] destination = new int[2];
                 try {
                     if (currentCell.isHasLadderBottom()) {
+                        System.out.println("Ladder detected");
                         destination[0] = currentCell.getLadder().getTop()[0];
                         destination[1] = currentCell.getLadder().getTop()[1];
                         pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
                         pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
                     } else if (currentCell.isHasSnakeMouth()) {
-                        System.out.println();
+                        System.out.println("Snake Detected");
                         destination[0] = currentCell.getLadder().getTop()[0];
                         destination[1] = currentCell.getLadder().getTop()[1];
                         pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
