@@ -194,7 +194,7 @@ public class Player {
             if (position == 44) {
                 setPosition(23);
                 updateCoordinates();
-                destination = new int[]{-3, -1};
+                destination = new int[]{-2, -1};
                 TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
                 move.setByY(yTranslation * destination[0]);
                 move.setByX(xTranslation * destination[1]);
@@ -241,10 +241,20 @@ public class Player {
                 move.play();
             }
 
+            if (position == 79) {
+                setPosition(43);
+                updateCoordinates();
+                destination = new int[]{-3, 1};
+                TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
+                move.setByY(yTranslation * destination[0]);
+                move.setByX(xTranslation * destination[1]);
+                move.play();
+            }
+
             if (position == 85) {
                 setPosition(65);
                 updateCoordinates();
-                destination = new int[]{2, 0};
+                destination = new int[]{-2, 0};
                 TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
                 move.setByY(yTranslation * destination[0]);
                 move.setByX(xTranslation * destination[1]);

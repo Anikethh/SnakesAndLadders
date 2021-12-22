@@ -122,6 +122,7 @@ public class Game {
     @FXML
     void roll(ActionEvent event) throws InterruptedException, IOException {
 
+        arrowAnimation(arrow);
         int steps = Die.roll(event, rollButton, diceImage);
         if(p2shadow.isVisible()){
             p2shadow.setVisible(false);
