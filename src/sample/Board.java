@@ -8,9 +8,9 @@ public class Board {
     private final ArrayList<ArrayList<Cell>> Board = new ArrayList<ArrayList<Cell>>(Dimensions);
 
     public void populateBoard(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < Dimensions; i++){
             Board.add(new ArrayList<Cell>(Dimensions));
-            for(int j = 0; j < 10; j++){
+            for(int j = 0; j < Dimensions; j++){
                 int[] coordinates = {i, j};
                 Cell newCell = new Cell((i*Dimensions) + (j), coordinates);
                 Board.get(i).add(newCell);

@@ -41,8 +41,7 @@ public class Player {
                 coordinates[1] = 1;
                 if(blueTurn){
                     blueTurn = false;
-//                    pawn.setTranslateX(-10);
-                    pawn.setTranslateY(-39);
+                    pawn.setTranslateY(-38);
                 }
 //                TranslateTransition putOnBoard = new TranslateTransition(Duration.millis(75), pawn);
 //                putOnBoard.setByX(0);
@@ -59,7 +58,6 @@ public class Player {
         position += 1;
         coordinates[0] = position / 10 + 1;
         coordinates[1] = position % 10;
-//        System.out.println(coordinates[1]);
     }
 
     public void jump(ImageView pawn, int count) {
@@ -71,17 +69,8 @@ public class Player {
                     xTranslation *= -1;
                 }
                 if(coordinates[1] != 0) {
-                    TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
-//                    translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-                    translation.setByY(-20);
-                    translation.setAutoReverse(true);
-                    translation.setCycleCount(2);
-                    translation.play();
-                    TranslateTransition xTransition = new TranslateTransition(Duration.millis(150), pawn);
-                    xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-                    xTransition.setByX(xTranslation);
-                    xTransition.play();
-                    System.out.println(i + "  " +  xTranslation + " " + count + " " + position);
+                    jumpAnimation(pawn);
+                    horizontalMove(pawn, xTranslation);
                     try {
                         Thread.sleep(150);
                     } catch (InterruptedException e) {
@@ -89,45 +78,50 @@ public class Player {
                     }
                 }
                 else{
-                    Thread thread1 = new Thread(() -> {
-                    jumpRow(pawn);
-                        try {
-                            Thread.sleep(150);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                    thread1.start();
+                    verticalMove(pawn);
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 incrementPosition();
-                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
-                int destinationX;
-                int destinationY;
-                if(currentCell.isHasLadderBottom()){
-                    destinationX = currentCell.getLadder().getTop()[0];
-                    destinationY = currentCell.getLadder().getTop()[1];
-
-                }
-                else if(currentCell.isHasSnakeMouth()){
-                    destinationX = currentCell.getLadder().getTop()[0];
-                    destinationY = currentCell.getLadder().getTop()[1];
-                }
+//                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
+//                int[] destination = new int[2];
+//                if(currentCell.isHasLadderBottom()){
+//                    destination[0] = currentCell.getLadder().getTop()[0];
+//                    destination[1] = currentCell.getLadder().getTop()[1];
+//
+//                }
+//                else if(currentCell.isHasSnakeMouth()){
+//                    destination[0] = currentCell.getLadder().getTop()[0];
+//                    destination[1] = currentCell.getLadder().getTop()[1];
+//                }
             }
         });
         thread.start();
     }
 
-    public void jumpRow(ImageView pawn){
-//            TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
-//            translation.setByY(-20);
-//            translation.setAutoReverse(true);
-//            translation.setCycleCount(2);
-//            translation.play();
+    public void jumpAnimation(ImageView pawn){
+        TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
+        translation.setByY(-20);
+        translation.setAutoReverse(true);
+        translation.setCycleCount(2);
+        translation.play();
+    }
+
+    public void horizontalMove(ImageView pawn, double xTranslation){
+        TranslateTransition xTransition = new TranslateTransition(Duration.millis(150), pawn);
+        xTransition.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
+        xTransition.setByX(xTranslation);
+        xTransition.play();
+    }
+
+    public void verticalMove(ImageView pawn){
         double yTranslation = -38;
-            TranslateTransition translationY = new TranslateTransition(Duration.millis(150), pawn);
-//            translationY.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-            translationY.setByY(yTranslation);
-            translationY.play();
+        TranslateTransition translationY = new TranslateTransition(Duration.millis(150), pawn);
+        translationY.setByY(yTranslation);
+        translationY.play();
     }
 
     public int getPosition() {

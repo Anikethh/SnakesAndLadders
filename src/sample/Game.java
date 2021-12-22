@@ -92,17 +92,12 @@ public class Game {
     void roll(ActionEvent event) throws InterruptedException, IOException {
 
         int steps = Die.roll(event, rollButton, diceImage);
-//        System.out.println(steps);
 
         if(turn) {
-//            System.out.println("Blue turn");
-//            Player1.setPosition(Player1.getPosition()+steps);
             Player1.move(bluePawn, steps);
             turn = false;
         }
         else{
-//            System.out.println("Green turn");
-//            Player2.setPosition(Player2.getPosition()+steps);
             Player2.move(greenPawn, steps);
             turn = true;
         }
