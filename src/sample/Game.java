@@ -73,8 +73,8 @@ public class Game {
         GameBoard.setSnakes();
         GameBoard.setLadders();
 
-        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard));
-        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard));
+        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard,stage));
+        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard,stage));
 
         Player1.setPosition(0);
         Player2.setPosition(0);

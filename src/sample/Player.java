@@ -26,16 +26,15 @@ public class Player {
     private final Color color;
     private final String name;
     private boolean blueTurn = true;
-//    public ImageView win;
-
-    Stage stage;
     private Scene scene;
+    Stage stage;
 
-    Player(String name, Color color, ImageView pawn, Board GameBoard){
+    Player(String name, Color color, ImageView pawn, Board GameBoard, Stage stage ){
         this.name = name;
         this.color = color;
         this.pawn = pawn;
         this.GameBoard = GameBoard;
+        this.stage=stage;
         position = 0;
     }
 
@@ -66,7 +65,7 @@ public class Player {
 
     public void jump(ImageView pawn, int count) {
 
-//        position = 100;
+        position = 100;
 
         if(position <= 100) {
             Thread thread = new Thread(() -> {
@@ -110,12 +109,8 @@ public class Player {
                 if (position == 7) {
                     setPosition(34);
                     updateCoordinates();
-                    System.out.println("Detected");
                     destination = new int[]{3, 0};
-//                translate(xTranslation, yTranslation, destination);
                     TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
-                    System.out.println("y: " + destination[0]);
-                    System.out.println("x: " + destination[1]);
                     move.setByY(yTranslation * destination[0]);
                     move.setByX(xTranslation * destination[1]);
                     move.play();
@@ -124,12 +119,8 @@ public class Player {
                 if (position == 12) {
                     setPosition(31);
                     updateCoordinates();
-                    System.out.println("Detected");
                     destination = new int[]{2, 1};
-//                translate(xTranslation, yTranslation, destination);
                     TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
-                    System.out.println("y: " + destination[0]);
-                    System.out.println("x: " + destination[1]);
                     move.setByY(yTranslation * destination[0]);
                     move.setByX(xTranslation * destination[1]);
                     move.play();
@@ -137,11 +128,8 @@ public class Player {
                 if (position == 15) {
                     setPosition(5);
                     updateCoordinates();
-                    System.out.println("Detected");
                     destination = new int[]{-1, -1};
                     TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
-                    System.out.println("y: " + destination[0]);
-                    System.out.println("x: " + destination[1]);
                     move.setByY(yTranslation * destination[0]);
                     move.setByX(xTranslation * destination[1]);
                     move.play();
@@ -151,8 +139,6 @@ public class Player {
                     updateCoordinates();
                     destination = new int[]{-2, 0};
                     TranslateTransition move = new TranslateTransition(Duration.millis(250), pawn);
-                    System.out.println("y: " + destination[0]);
-                    System.out.println("x: " + destination[1]);
                     move.setByY(yTranslation * destination[0]);
                     move.setByX(xTranslation * destination[1]);
                     move.play();
