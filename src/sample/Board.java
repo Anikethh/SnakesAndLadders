@@ -40,7 +40,7 @@ public class Board {
         Board.get(22).createSnake(new Snake(2));
 
         Board.get(33).setHasSnakeMouth(true);
-        Board.get(33).createSnake(new Snake(8));
+        Board.get(33).createSnake(new Snake(3));
 
         Board.get(44).setHasSnakeMouth(true);
         Board.get(44).createSnake(new Snake(22));
@@ -49,7 +49,7 @@ public class Board {
         Board.get(68).createSnake(new Snake(50));
 
         Board.get(79).setHasSnakeMouth(true);
-        Board.get(79).createSnake(new Snake(43));
+        Board.get(79).createSnake(new Snake(48));
 
         Board.get(85).setHasSnakeMouth(true);
         Board.get(85).createSnake(new Snake(65));
@@ -58,10 +58,10 @@ public class Board {
         Board.get(92).createSnake(new Snake(71));
 
         Board.get(94).setHasSnakeMouth(true);
-        Board.get(94).createSnake(new Snake(47));
+        Board.get(94).createSnake(new Snake(44));
 
         Board.get(98).setHasSnakeMouth(true);
-        Board.get(98).createSnake(new Snake(82));
+        Board.get(98).createSnake(new Snake(89));
     }
 
     public void setLadders(){
@@ -69,13 +69,13 @@ public class Board {
         Board.get(3).createLadder(new Ladder(24));
 
         Board.get(7).setHasLadderBottom(true);
-        Board.get(7).createLadder(new Ladder(34));
+        Board.get(7).createLadder(new Ladder(37));
 
         Board.get(12).setHasLadderBottom(true);
         Board.get(12).createLadder(new Ladder(31));
 
         Board.get(20).setHasLadderBottom(true);
-        Board.get(20).createLadder(new Ladder(41));
+        Board.get(20).createLadder(new Ladder(50));
 
         Board.get(36).setHasLadderBottom(true);
         Board.get(36).createLadder(new Ladder(46));
@@ -84,7 +84,7 @@ public class Board {
         Board.get(56).createLadder(new Ladder(63));
 
         Board.get(60).setHasLadderBottom(true);
-        Board.get(60).createLadder(new Ladder(81));
+        Board.get(60).createLadder(new Ladder(90));
 
         Board.get(69).setHasLadderBottom(true);
         Board.get(69).createLadder(new Ladder(93));
