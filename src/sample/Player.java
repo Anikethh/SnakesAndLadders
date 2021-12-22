@@ -52,7 +52,7 @@ public class Player {
                 coordinates[1] = 1;
                 if(blueTurn){
                     blueTurn = false;
-                    pawn.setTranslateY(-38);
+                    pawn.setTranslateY(-37);
                 }
 //                TranslateTransition putOnBoard = new TranslateTransition(Duration.millis(75), pawn);
 //                putOnBoard.setByX(0);
@@ -73,9 +73,9 @@ public class Player {
 
     public void jump(ImageView pawn, int count) {
         Thread thread = new Thread(() -> {
+            double xTranslation = 29.70;
+            double yTranslation = -37.75;
             for(int i = 0; i < count; i++) {
-                double xTranslation = 29.60;
-                double yTranslation = -37.75;
                 if(coordinates[0] % 2 == 0){
                     xTranslation *= -1;
                 }
@@ -96,31 +96,32 @@ public class Player {
                         e.printStackTrace();
                     }
                 }
-//                Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
-                Cell currentCell = GameBoard.getBoard().get(position);
-                System.out.println(currentCell.getPosition());
                 incrementPosition();
+            }
+            Cell currentCell = GameBoard.getBoard().get(position-1);
+            System.out.println(currentCell.getPosition());
+            System.out.println(GameBoard.getBoard().get(position-1).isHasSnakeMouth());
+            System.out.println(currentCell.isHasSnakeMouth());
 //                if(position == 100){
 //                    endGame();
 //                }
-                int[] destination = new int[2];
-                try {
-                    if (currentCell.isHasLadderBottom()) {
-                        System.out.println("Ladder detected");
-                        destination[0] = currentCell.getLadder().getTop()[0];
-                        destination[1] = currentCell.getLadder().getTop()[1];
-                        pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
-                        pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
-                    } else if (currentCell.isHasSnakeMouth()) {
-                        System.out.println("Snake Detected");
-                        destination[0] = currentCell.getLadder().getTop()[0];
-                        destination[1] = currentCell.getLadder().getTop()[1];
-                        pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
-                        pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
-                    }
-                } catch (Exception e){
-                    e.printStackTrace();
+            int[] destination = new int[2];
+            try {
+                if (currentCell.isHasLadderBottom()) {
+                    System.out.println("Ladder detected");
+                    destination[0] = currentCell.getLadder().getTop()[0];
+                    destination[1] = currentCell.getLadder().getTop()[1];
+                    pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
+                    pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
+                } else if (currentCell.isHasSnakeMouth()) {
+                    System.out.println("Snake Detected");
+                    destination[0] = currentCell.getLadder().getTop()[0];
+                    destination[1] = currentCell.getLadder().getTop()[1];
+                    pawn.setTranslateX(xTranslation * destination[0] - pawn.getX());
+                    pawn.setTranslateY(yTranslation * destination[1] - pawn.getY());
                 }
+            } catch (Exception e){
+                e.printStackTrace();
             }
         });
         thread.start();

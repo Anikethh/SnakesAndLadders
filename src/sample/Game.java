@@ -60,6 +60,7 @@ public class Game {
 //        String name2 = player2.getText();
 
         GameBoard.populateBoard();
+        GameBoard.setSnakes();
 
         Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard));
         Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard));
