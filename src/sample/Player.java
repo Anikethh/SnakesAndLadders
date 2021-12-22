@@ -26,6 +26,7 @@ public class Player {
     private final Color color;
     private final String name;
     private boolean blueTurn = true;
+//    public ImageView win;
 
     Stage stage;
     private Scene scene;
@@ -97,16 +98,21 @@ public class Player {
             }
 
             double xTranslation = 29.70;
-            double yTranslation = -37.75;
+            double yTranslation = -38.75;
 
             playerCell = GameBoard.getBoard().get(position);
             System.out.println(playerCell.getPosition());
 //            System.out.println("Snake: " + playerCell.isHasSnakeMouth());
 //            System.out.println("Ladder: " + playerCell.isHasLadderBottom());
-//                if(position == 100){
-//                    endGame();
-//            return;
-//                }
+                if(position >= 100){
+                try {
+//                    win.setVisible(true);
+                    endGame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+                }
             int[] destination = new int[2];
             int[] yr = new int[2];
             try {
@@ -232,3 +238,5 @@ public class Player {
 //        stage.show();
     }
 }
+//  fxid.setopacity(0);
+//fxid.setvisible(false);
