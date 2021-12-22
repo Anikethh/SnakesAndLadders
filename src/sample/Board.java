@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private final int Dimensions = 10;
+    private final int Dimensions = 11;
     private final ArrayList<ArrayList<Cell>> Board = new ArrayList<ArrayList<Cell>>(Dimensions);
 
     public void populateBoard(){

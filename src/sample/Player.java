@@ -3,10 +3,18 @@ package sample;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Translate;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class Player {
 
@@ -22,6 +30,9 @@ public class Player {
     private final Color color;
     private final String name;
     private boolean blueTurn = true;
+
+    Stage stage;
+    private Scene scene;
 
     Player(String name, Color color, ImageView pawn, Board GameBoard){
         this.name = name;
@@ -86,6 +97,9 @@ public class Player {
                     }
                 }
                 incrementPosition();
+                if(position == 100){
+                    endGame();
+                }
                 Cell currentCell = GameBoard.getBoard().get(coordinates[0]).get(coordinates[1]);
                 int[] destination = new int[2];
                 try {
@@ -141,5 +155,13 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void endGame() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("End.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
