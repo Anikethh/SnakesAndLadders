@@ -68,7 +68,7 @@ public class Player {
 
 //        position = 100;
 
-        if(position <= 100) {
+        if(position + count <= 100) {
             Thread thread = new Thread(() -> {
 
                 if(position == 100){
@@ -297,7 +297,7 @@ public class Player {
 
     public void jumpAnimation(ImageView pawn){
         TranslateTransition translation = new TranslateTransition(Duration.millis(75), pawn);
-        translation.setByY(-20);
+        translation.setByY(-10);
         translation.setAutoReverse(true);
         translation.setCycleCount(2);
         translation.play();

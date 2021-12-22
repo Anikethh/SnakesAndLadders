@@ -73,8 +73,8 @@ public class Game {
         GameBoard.setSnakes();
         GameBoard.setLadders();
 
-        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard,stage));
-        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard,stage));
+        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard, stage));
+        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard, stage));
 
         Player1.setPosition(0);
         Player2.setPosition(0);
@@ -83,7 +83,14 @@ public class Game {
     }
 
     public void arrowAnimation(ImageView arrow) throws InterruptedException {
-        TranslateTransition translation = new TranslateTransition(Duration.millis(200), arrow);
+        int reSet = 0;
+//        layoutX="136.0" layoutY="497.0"
+        arrow.setLayoutX(136.00);
+        arrow.setLayoutY(497.00);
+//        arrow.setX(136.00);
+//        arrow.setY(497.00);
+        TranslateTransition translation = new TranslateTransition(Duration.millis(300), arrow);
+        translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
         translation.setByY(-20);
         translation.setAutoReverse(true);
         translation.setCycleCount(Animation.INDEFINITE);
