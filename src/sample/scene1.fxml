@@ -8,18 +8,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
-    <ImageView fx:id="cover" fitHeight="710.0" fitWidth="376.0" layoutX="-3.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@Images/HomeScreen.png" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
+    <ImageView fx:id="cover" fitHeight="686.0" fitWidth="339.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@gg-01.png" />
     </ImageView>
-    <Button blendMode="MULTIPLY" layoutX="62.0" layoutY="312.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="44.0" prefWidth="206.0" />
-   <Label layoutX="75.0" layoutY="607.0" prefHeight="18.0" prefWidth="185.0" text="Game by Anshul and Aniketh" textFill="WHITE">
+    <Button blendMode="MULTIPLY" layoutX="56.0" layoutY="428.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="52.0" prefWidth="226.0" />
+   <Label layoutX="67.0" layoutY="571.0" prefHeight="18.0" prefWidth="185.0" text="Game by Anshul and Aniketh" textFill="WHITE">
       <font>
          <Font name="Arial Italic" size="14.0" />
       </font>
    </Label>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="10.0" layoutX="174.0" layoutY="340.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="94.0" />
-   <Label layoutX="180.0" layoutY="338.0" prefHeight="15.0" prefWidth="80.0" text="Players:    2" textFill="WHITE">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="10.0" layoutX="176.0" layoutY="462.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="94.0" />
+   <Label layoutX="204.0" layoutY="459.0" prefHeight="15.0" prefWidth="80.0" text="Players:    2" textFill="WHITE">
       <font>
          <Font size="10.0" />
       </font></Label>
