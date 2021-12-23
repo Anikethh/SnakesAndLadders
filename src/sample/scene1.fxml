@@ -12,7 +12,7 @@
     <ImageView fx:id="cover" fitHeight="686.0" fitWidth="339.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@HomeScreen.png" />
     </ImageView>
-    <Button blendMode="MULTIPLY" layoutX="56.0" layoutY="428.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="52.0" prefWidth="226.0" textFill="WHITE" />
+    <Button blendMode="MULTIPLY" layoutX="56.0" layoutY="428.0" mnemonicParsing="false" onAction="#coverToPlayer" prefHeight="52.0" prefWidth="226.0" />
    <Label layoutX="67.0" layoutY="571.0" prefHeight="18.0" prefWidth="185.0" text="Game by Anshul and Aniketh" textFill="WHITE">
       <font>
          <Font name="Arial Italic" size="14.0" />

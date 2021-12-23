@@ -50,7 +50,6 @@ public class Game {
     @FXML
     public Rectangle p2shadow;
     public ImageView arrow;
-    public Button nn;
 
 
     @FXML
@@ -65,8 +64,7 @@ public class Game {
     Stage stage;
     private boolean turn = true;
 
-
-    public Game()  {
+    public Game() {
 
 //        String name1 = player1.getText();
 //        String name2 = player2.getText();
@@ -75,9 +73,8 @@ public class Game {
         GameBoard.setSnakes();
         GameBoard.setLadders();
 
-
-        Player1 = (new Player("yr", Color.BLUE, bluePawn, GameBoard, stage));
-        Player2 = (new Player("yr2", Color.GREEN, greenPawn, GameBoard, stage));
+        Player1 = (new Player("Anshul", Color.BLUE, bluePawn, GameBoard, stage));
+        Player2 = (new Player("Aniketh", Color.GREEN, greenPawn, GameBoard, stage));
 
         Player1.setPosition(0);
         Player2.setPosition(0);
@@ -122,18 +119,18 @@ public class Game {
     @FXML
     void roll(ActionEvent event) throws InterruptedException, IOException {
 
-        arrowAnimation(arrow);
         int steps = Die.roll(event, rollButton, diceImage);
+
         if(p2shadow.isVisible()){
             p2shadow.setVisible(false);
             p1shadow.setVisible(true);
-//            arrowAnimation(arrow);
+            arrowAnimation(arrow);
 
         }
         else{
             p2shadow.setVisible(true);
             p1shadow.setVisible(false);
-//            arrowAnimation(arrow);
+            arrowAnimation(arrow);
 
         }
 
@@ -179,14 +176,6 @@ public class Game {
 
     public void winnertogame(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void wingame(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("winnner.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
